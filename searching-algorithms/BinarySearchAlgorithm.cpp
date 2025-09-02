@@ -16,7 +16,6 @@ int BinarySearchAlgorithm(int a[], int low, int high,int key) {
     return -1;
 }
 
-
 int main() {
     int key;
     cout << "Enter The Key: ";

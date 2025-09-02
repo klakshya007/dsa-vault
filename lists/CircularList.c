@@ -43,7 +43,6 @@ void Display () {
     printf("The List Is : ");
     if (start==NULL){
         printf("Empty\n");
-        return;
     }
     else if (start==start->next){
         printf("%d ",start->data);

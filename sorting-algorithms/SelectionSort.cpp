@@ -9,17 +9,15 @@ void Swap(int *a, int *b) {
 }
 
 void SelectionSort(int a[],int n) {
-    int flag=0;
     for(int i=0;i<n-1; i++) {
         int min=i;
         for (int j=i+1; j<n;j++){
             if (a[min]>a[j]) {
-                Swap(&a[i],&a[j]);
-                flag=1;
+                min=j;
             }
-            if (flag==0) {
-                break;
-            }
+        }
+        if (min!=i) {
+            Swap(&a[i],&a[min]);
         }
     }
 }

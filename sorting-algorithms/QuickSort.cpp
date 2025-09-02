@@ -1,50 +1,68 @@
 #include <iostream>
 using namespace std;
 
-//Swap
+// Swap function
 void Swap(int *a, int *b) {
     int temp = *a;
-    *a=*b;
+    *a = *b;
     *b = temp;
 }
 
+// Partition function
 int Partition(int a[], int low, int high) {
-    int pivot = low;
-    int i = low +1;
-    int j=high;
-    while (i<=j) {
-    while(a[i]<=a[pivot]) {//Left Iterator
-        i++;
+    int pivot = a[low]; // Choosing first element as pivot
+    int i = low + 1;
+    int j = high;
+
+    while (true) {
+        // Move i to the right until an element > pivot is found
+        while (i <= high && a[i] <= pivot) {
+            i++;
+        }
+
+        // Move j to the left until an element <= pivot is found
+        while (j >= low && a[j] > pivot) {
+            j--;
+        }
+
+        // If indices cross, break
+        if (i >= j) break;
+
+        // Swap out-of-place elements
+        Swap(&a[i], &a[j]);
     }
-    while (a[j]>a[pivot]) {//Right Iterator
-        j--;
-    }
-    if (i<j) {
-        Swap (&a[i],&a[j]);
-    }   
+
+    // Place pivot in its correct position
+    Swap(&a[low], &a[j]);
+
+    return j; // Pivot index
 }
-Swap(&a[j], &a[pivot]);
-pivot=j; //As We Only Change The Elements, Not The Indices Of Pivot & J
-return pivot;
-}
+
+// QuickSort function
 void QuickSort(int a[], int low, int high) {
-    if (low<high) { //Base Case
-        int pivot_index =Partition(a,low,high);
-        QuickSort(a,low,pivot_index-1); //LeftSubArray
-        QuickSort(a,pivot_index+1,high); //RightSubArray
+    if (low < high) {
+        int pivot_index = Partition(a, low, high);
+        QuickSort(a, low, pivot_index - 1);  // Left subarray
+        QuickSort(a, pivot_index + 1, high); // Right subarray
     }
-    }
+}
 
 int main() {
     int n;
-    cout << "Enter The Size Of The Array : ";
-    cin >>n;
+    cout << "Enter the size of the array: ";
+    cin >> n;
+
     int a[n];
-    for (int i=0;i<n;i++) {
+    cout << "Enter " << n << " elements:\n";
+    for (int i = 0; i < n; i++) {
         cin >> a[i];
     }
-    QuickSort(a,0,n-1);
-    for (int i=0;i<n;i++) {
-        cout << a[i] << " ";}
+
+    QuickSort(a, 0, n - 1);
+
+    cout << "Sorted array: ";
+    for (int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
     return 0;
 }

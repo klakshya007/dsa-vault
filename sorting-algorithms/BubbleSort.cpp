@@ -6,19 +6,19 @@ void swap(int *a, int *b) {
     *a=*b;
     *b=temp;}
 
-void bsort(int a[],int n) {
-    int flag=0;
-    for (int i=0;i<n;i++) { //Pass
-        for (int j=0;j<n-i-1;j++) {//Comparison
-            if (a[j]>a[j+1]) {
-                swap(&a[j],&a[j+1]);
-                flag=1;
+void bsort(int a[], int n) {
+    for (int i = 0; i < n; i++) {  // Pass
+        int flag = 0;
+        for (int j = 0; j < n - i - 1; j++) {  // Comparison
+            if (a[j] > a[j + 1]) {
+                swap(a[j], a[j + 1]); // Swap adjacent elements
+                flag = 1;
             }
+        }
+        if (flag == 0) { // No swaps → array is sorted
+            break;
+        }
     }
-    if (flag==0) {
-        break;
-    }
-}
 }
 
 int main() {
