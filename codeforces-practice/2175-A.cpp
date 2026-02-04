@@ -1,32 +1,40 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <set>
 using namespace std;
 
-int main() {
+int main(){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int t;
-    cin >> t;
+    int k;
+    cin >> k;
 
-    while (t--) {
-        int n;
-        cin >> n;
+    while (k--) {
+        int m;
+        cin >> m;
 
-        vector<int> a(n);
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
+        vector<int> inp;   // create ONCE per test case
+        set<int> s;
+
+        for (int i = 0; i < m; i++) {
+            int n;
+            cin >> n;
+            inp.push_back(n);
+            s.insert(n);
         }
 
-        // store unique elements
-        set<int> s(a.begin(), a.end());
-        int d = s.size();   // number of distinct colors
+        int d = s.size();
+        int ans = 0;
 
-        int ans = d;
-        while (s.count(ans)) {
-            ans++;
+        // same logic as the provided solution
+        for (int x : s) {
+            if (x >= d) {
+                ans = x;
+                break;
+            }
         }
 
-        cout << ans << "\n";
+        cout << ans << '\n';
     }
-    return 0;
 }
