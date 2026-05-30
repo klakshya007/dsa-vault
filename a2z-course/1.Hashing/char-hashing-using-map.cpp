@@ -8,7 +8,7 @@ int main(){
     cin >> a;
 
     //precompute
-    map <char,int> mpp;
+    map <int,int> mpp;
     for (int i=0;i<a.size();i++){
         mpp[a[i]]++;
     }
